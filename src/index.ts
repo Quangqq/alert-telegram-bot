@@ -15,12 +15,7 @@ cron.schedule('*/1 * * * *', async () => {
   const url = process.env.WEB_URL || '';
   const hour = new Date().toISOString();
 
-  console.log(url);
-  console.log(hour);
-
   try {
-    console.log('Fetching...');
-
     const res = await fetch(url);
     if (res.status !== 200) return;
     if (lastState === 'AVAILABLE') return;
@@ -29,15 +24,13 @@ cron.schedule('*/1 * * * *', async () => {
     const msg = `${hour} \nSistema de citas DISPONIBLE. 🟢 \n${url}`;
 
     bot.sendMessage(process.env.CHANNEL_ID as any, msg);
-    console.log(msg);
+    console.log('Service available...');
   } catch (e) {
-    console.log('Handling error...');
-    console.log(e);
+    console.log('Handling error...', e);
     if (lastState === 'UNAVAILABLE') return;
     lastState = 'UNAVAILABLE';
     const msg = `${hour} \nSistema de citas NO disponible. 🔴 \n${url}`;
 
     bot.sendMessage(process.env.CHANNEL_ID as any, msg);
-    console.log(msg);
   }
 });
