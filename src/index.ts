@@ -6,7 +6,7 @@ import cron from 'node-cron';
 
 let lastState: 'AVAILABLE' | 'UNAVAILABLE' = 'UNAVAILABLE';
 
-cron.schedule('* * * * *', async () => {
+cron.schedule('*/1 * * * *', async () => {
   const url = process.env.WEB_URL || '';
   const hour = new Date().toISOString();
 
