@@ -22,7 +22,7 @@ cron.schedule('*/1 * * * *', async () => {
 
     const res = await fetch(url);
     if (res.status !== 200) return;
-    if (lastState !== 'UNAVAILABLE') return;
+    if (lastState === 'AVAILABLE') return;
 
     lastState = 'AVAILABLE';
     const msg = `${hour} \nSistema de citas DISPONIBLE. 🟢 \n${url}`;
