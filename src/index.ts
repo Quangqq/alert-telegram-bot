@@ -1,8 +1,9 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-import { bot } from './bot/bot';
 import cron from 'node-cron';
+import fetch from 'node-fetch';
+import { bot } from './bot/bot';
 
 let lastState: 'AVAILABLE' | 'UNAVAILABLE' = 'UNAVAILABLE';
 
