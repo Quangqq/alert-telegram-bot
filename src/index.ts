@@ -31,7 +31,7 @@ cron.schedule('*/1 * * * *', async () => {
     console.log(msg);
   } catch (e) {
     console.log('Handling error...');
-
+    console.log(e);
     if (lastState === 'UNAVAILABLE') return;
     lastState = 'UNAVAILABLE';
     const msg = `${hour} \nSistema de citas NO disponible. 🔴 \n${url}`;
