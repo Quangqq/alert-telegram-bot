@@ -16,16 +16,16 @@ cron.schedule('* * * * *', async () => {
     if (lastState !== 'UNAVAILABLE') return;
 
     lastState = 'AVAILABLE';
-    bot.sendMessage(
-      process.env.CHANNEL_ID as any,
-      `${hour} \nSistema de citas DISPONIBLE. 🟢 \n${url}`,
-    );
+    const msg = `${hour} \nSistema de citas DISPONIBLE. 🟢 \n${url}`;
+
+    bot.sendMessage(process.env.CHANNEL_ID as any, msg);
+    console.log(msg);
   } catch (e) {
     if (lastState === 'UNAVAILABLE') return;
     lastState = 'UNAVAILABLE';
-    bot.sendMessage(
-      process.env.CHANNEL_ID as any,
-      `${hour} \nSistema de citas NO disponible. 🔴 \n${url}`,
-    );
+    const msg = `${hour} \nSistema de citas NO disponible. 🔴 \n${url}`;
+
+    bot.sendMessage(process.env.CHANNEL_ID as any, msg);
+    console.log(msg);
   }
 });
